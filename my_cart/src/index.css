@@ -10,8 +10,9 @@ body {
   display: inline-flex;
   margin: 20px 10px;
 }
-.cart-item .right-block {
+.cart-item .right-block{
   padding: 0 20px;
+  font-weight: 400;
 }
 .cart-item-actions {
   margin-top: 20px;
