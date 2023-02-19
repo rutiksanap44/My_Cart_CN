@@ -12,7 +12,9 @@ class CartItem extends React.Component {
                     <div>₹ 99</div>
                     <div>Qty : 1 item</div>
                     <div className='cart-item-actions'>
-
+                    <img alt="" src='https://cdn-icons-png.flaticon.com/512/992/992651.png' className='action-icons'></img>
+                    <img alt="" src='https://cdn-icons-png.flaticon.com/512/992/992683.png' className='action-icons'></img>
+                    <img alt="" src='https://cdn-icons-png.flaticon.com/512/2907/2907762.png' className='action-icons'></img>
                     </div>
                 </div>
             </div>
