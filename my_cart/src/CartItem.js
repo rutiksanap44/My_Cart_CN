@@ -1,17 +1,16 @@
 import React from 'react';
 
 const CartItem = (props) => {
-        const { price, qty, img, title } = props.product;
         const { product, onIncreaseQuantity, onDecreaseQuantity, onDeleteQuantity } = props;
         return (
             <div className='cart-item'>
                 <div className='left-block'>
-                    <img style={styles.image} src={img} alt='shopping_item' />
+                    <img style={styles.image} src={product.img} alt='shopping_item' />
                 </div>
                 <div style={{ fontSize: 25 }} className='right-block'>
-                    <div>{title}</div>
-                    <div>₹{price}</div>
-                    <div id='qty'>Qty : {qty} item</div>
+                    <div>{product.title}</div>
+                    <div>₹{product.price}</div>
+                    <div id='qty'>Qty : {product.qty} item</div>
                     <div className='cart-item-actions'>
                         <img id='increase_quantity' alt="" src='https://cdn-icons-png.flaticon.com/512/992/992651.png' className='action-icons'
                             onClick={() => onIncreaseQuantity(product)}
