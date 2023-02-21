@@ -9,7 +9,21 @@ class CartItem extends React.Component {
             qty: 1,
             img: './kid_Shopping.jpg'
         }
+        this.testing();
+    }
+
+    testing() {
+        const promise = new Promise((resolve, reject) => {
+            setTimeout(()=>{
+                resolve('done');
+            },3000)
+        });
+        promise.then(() => {
+            this.setState({qty : 1});
+            console.log('state',this.state)
+        });
     };
+
     increaseQuantity = () => {
         // this is one way to change the state property
         // this.setState({
@@ -21,6 +35,8 @@ class CartItem extends React.Component {
             return {
                 qty: prevState.qty + 1
             };
+        }, () => {
+            console.log(this.state)
         });
     };
     decreaseQuantity = () => {
@@ -33,7 +49,7 @@ class CartItem extends React.Component {
         });
     };
     render() {
-        const { price, qty, title, img } = this.state;
+        const { price, qty, title, img } = this.props;
         return (
             <div className='cart-item'>
                 <div className='left-block'>

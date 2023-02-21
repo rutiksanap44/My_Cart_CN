@@ -25,3 +25,7 @@ body {
 .action-icons:hover {
   cursor: pointer;
 }
+.CartDiv{
+  display: flex;
+  flex-direction: column;
+}
