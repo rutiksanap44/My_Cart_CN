@@ -15,26 +15,25 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.db.collection("products").onSnapshot(snapshot => {
-      const products = snapshot.docs.map(doc => {
-        const data = doc.data();
-        data["id"] = doc.id;
-        return data;
+    this.db.collection("products")
+      .where('price', '>', 0)
+      .orderBy('price', 'desc')
+      .onSnapshot(snapshot => {
+        const products = snapshot.docs.map(doc => {
+          const data = doc.data();
+          data["id"] = doc.id;
+          return data;
+        });
+        this.setState({
+          products: products,
+          loading: false
+        })
       });
-      this.setState({
-        products: products,
-        loading: false
-      })
-    });
   }
 
   handleIncreaseQuantity = (product) => {
     const { products } = this.state;
     const index = products.indexOf(product);
-    // products[index].qty += 1;
-    // this.setState({
-    //   products
-    // })
     const docRef = this.db.collection("products").doc(products[index].id);
     docRef.update({
       qty: products[index].qty + 1
@@ -57,25 +56,18 @@ class App extends React.Component {
       }).catch((error) => {
         console.log('Error', error)
       })
-    }else{
+    } else {
       console.log('Cannot Descrease the Quantity');
     }
   };
   handleDeleteItem = (id) => {
-    // const { products } = this.state;
-    // const items = products.filter((item) => item.id !== id);
-
     const docRef = this.db.collection("products").doc(id);
     docRef.delete()
-    .then(() =>{
-      console.log('Deleted Successfully')
-    }).catch((error) => {
-      console.log('Error',error);
-    })
-
-    // this.setState({
-    //   products: items
-    // })
+      .then(() => {
+        console.log('Deleted Successfully')
+      }).catch((error) => {
+        console.log('Error', error);
+      })
   }
 
   getCartCount = () => {
